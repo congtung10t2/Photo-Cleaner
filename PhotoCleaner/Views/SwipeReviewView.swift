@@ -37,6 +37,7 @@ struct SwipeReviewView: View {
     private func reviewView(for item: AssetDescriptor) -> some View {
         VStack(spacing: 12) {
             FullScreenAssetView(asset: item.asset)
+                .id(item.id)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .padding(.horizontal)
 

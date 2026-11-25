@@ -35,6 +35,7 @@ struct ReviewView: View {
 
         return VStack(spacing: 16) {
             FullScreenAssetView(asset: item.asset)
+                .id(item.id)
 
             HStack(spacing: 16) {
                 Button {

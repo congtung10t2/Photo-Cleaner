@@ -61,7 +61,7 @@
 		3C939054FE99EE86EFED3C03 /* ScanResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResult.swift; sourceTree = "<group>"; };
 		3DE957C6BDACFF1629D74E21 /* LibraryScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryScannerView.swift; sourceTree = "<group>"; };
 		4098B16CC3B8599D1BFCC949 /* JunkDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JunkDetectionService.swift; sourceTree = "<group>"; };
-		492F1B172D6392170B3BD6FF /* PhotoCleaner.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PhotoCleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		492F1B172D6392170B3BD6FF /* PhotoCleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoCleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5046590140E59501837AA17B /* ScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewModel.swift; sourceTree = "<group>"; };
 		5BE06BC13753ECF9B9A83D9B /* FingerprintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerprintTests.swift; sourceTree = "<group>"; };
 		67C95E0C1885356AD5170119 /* ScanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanProgressView.swift; sourceTree = "<group>"; };
@@ -254,8 +254,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 34A43265EEDF1282B8A97AA0 /* Build configuration list for PBXProject "PhotoCleaner" */;
 			developmentRegion = en;
@@ -352,6 +350,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = FD8HF8B77P;
 				INFOPLIST_FILE = PhotoCleaner/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -362,7 +361,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sideproject.PhotoCleaner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thaole.photoCleaner;
 				PRODUCT_NAME = PhotoCleaner;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,6 +373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = FD8HF8B77P;
 				INFOPLIST_FILE = PhotoCleaner/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -384,7 +384,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sideproject.PhotoCleaner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thaole.photoCleaner;
 				PRODUCT_NAME = PhotoCleaner;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

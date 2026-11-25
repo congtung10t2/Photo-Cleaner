@@ -20,7 +20,8 @@ struct ScanResult {
     let finishedAt: Date
 
     func groups(for category: ScanCategory) -> [IssueGroup] {
-        groups.filter { $0.category == category }
+        guard category != .allIssues else { return groups }
+        return groups.filter { $0.category == category }
     }
 
     func count(for category: ScanCategory) -> Int {

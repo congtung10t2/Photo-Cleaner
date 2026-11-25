@@ -2,6 +2,7 @@ import SwiftUI
 
 struct StartScanView: View {
     @ObservedObject var viewModel: ScanViewModel
+    @State private var showingRestartConfirmation = false
 
     var body: some View {
         VStack(spacing: 18) {
@@ -16,7 +17,7 @@ struct StartScanView: View {
                 .multilineTextAlignment(.center)
 
             VStack(alignment: .leading, spacing: 14) {
-                ForEach(ScanCategory.allCases) { category in
+                ForEach(ScanCategory.issueTypes) { category in
                     Label {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(category.title)
@@ -35,6 +36,13 @@ struct StartScanView: View {
 
             ScanScopeSelector(viewModel: viewModel)
 
+            if viewModel.scannedHistoryCount > 0 {
+                Text("\(viewModel.scannedHistoryCount) items already scanned. Only new items will be checked.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+
             Button {
                 Task { await viewModel.startScan() }
             } label: {
@@ -45,6 +53,14 @@ struct StartScanView: View {
             .controlSize(.large)
             .padding(.horizontal, 40)
 
+            Button {
+                showingRestartConfirmation = true
+            } label: {
+                Label("Restart scanning", systemImage: "arrow.counterclockwise")
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+
             Text("Analysis happens entirely on this device.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -52,5 +68,13 @@ struct StartScanView: View {
             Spacer()
         }
         .padding()
+        .confirmationDialog("Restart scanning?", isPresented: $showingRestartConfirmation, titleVisibility: .visible) {
+            Button("Restart", role: .destructive) {
+                Task { await viewModel.restartScanning() }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Previously scanned items will be checked again.")
+        }
     }
 }

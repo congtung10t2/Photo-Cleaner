@@ -1,8 +1,10 @@
 import Photos
+import SwiftData
 import SwiftUI
 import UIKit
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
     @StateObject private var viewModel = ScanViewModel()
 
     var body: some View {
@@ -16,7 +18,10 @@ struct ContentView: View {
                 )
             }
         }
-        .task { await viewModel.checkAuthorization() }
+        .task {
+            viewModel.configure(modelContext: modelContext)
+            await viewModel.checkAuthorization()
+        }
         .alert("Couldn't Delete", isPresented: deleteErrorBinding) {
             Button("OK", role: .cancel) {}
         } message: {

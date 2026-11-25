@@ -16,9 +16,9 @@ An on-device iOS app that scans the photo library and groups:
 
 Open `PhotoCleaner.xcodeproj`, select the `PhotoCleaner` scheme, choose a device or simulator, and run. Grant photo library access on the first launch, then tap **Scan Photo Library**.
 
-Before scanning, choose the amount: **100 items**, a **custom amount**, or **Full library** (the final option). Each scan analyzes that slice of the library; **Next N** continues from where the previous batch stopped, and results accumulate across batches.
+Before scanning, choose the amount: **100 items**, a **custom amount**, or **Full library** (the final option). Each scan analyzes that slice of the library; **Next N** continues from where the previous batch stopped, and results accumulate across batches. Scanned item IDs are saved with SwiftData, so later scans only check items that have not been analyzed yet. **Restart scanning** clears that history and checks everything again.
 
-After scanning, choose an issue type and tap thumbnails to select them. A "KEEP" badge marks the highest-resolution copy in each duplicate group. Enable **Review before deleting** to walk through each selected item full-screen and decide Keep or Delete individually; otherwise the standard confirmation dialog is used. Deleted items go to **Recently Deleted**.
+After scanning, choose an issue type or **All Issues** to review everything together, then tap thumbnails to select them. A "KEEP" badge marks the highest-resolution copy in each duplicate group. Enable **Review before deleting** to walk through each selected item full-screen and decide Keep or Delete individually; otherwise the standard confirmation dialog is used. **Swipe Review** walks through every flagged item instead: X removes it immediately, ✓ keeps it and moves on. Deleted items go to **Recently Deleted**.
 
 ## Regenerating the Xcode project
 

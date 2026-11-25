@@ -4,9 +4,15 @@ struct ResultsView: View {
     @ObservedObject var viewModel: ScanViewModel
     @State private var showingDeleteConfirmation = false
     @State private var showingReview = false
+    @State private var showingSwipeReview = false
+    @State private var swipeItems: [AssetDescriptor] = []
 
     private var selectedAssets: [AssetDescriptor] {
-        viewModel.currentGroups.flatMap(\.assets).filter { viewModel.isSelected($0.id) }
+        var seen = Set<String>()
+        return viewModel.currentGroups.flatMap(\.assets).filter { item in
+            guard viewModel.isSelected(item.id), seen.insert(item.id).inserted else { return false }
+            return true
+        }
     }
 
     var body: some View {
@@ -59,9 +65,22 @@ struct ResultsView: View {
                 .padding(.horizontal)
                 .padding(.bottom, 4)
 
+            if !viewModel.allIssueAssets.isEmpty {
+                Button {
+                    swipeItems = viewModel.allIssueAssets
+                    showingSwipeReview = true
+                } label: {
+                    Label("Swipe Review", systemImage: "hand.thumbsup")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .padding(.horizontal)
+                .padding(.bottom, 6)
+            }
+
             if viewModel.currentGroups.isEmpty {
                 ContentUnavailableView(
-                    "No \(viewModel.selectedCategory.title.lowercased()) found",
+                    viewModel.selectedCategory.emptyStateTitle,
                     systemImage: "checkmark.circle",
                     description: Text(viewModel.selectedCategory.detail)
                 )
@@ -97,6 +116,9 @@ struct ResultsView: View {
         }
         .sheet(isPresented: $showingReview) {
             ReviewView(viewModel: viewModel, items: selectedAssets)
+        }
+        .sheet(isPresented: $showingSwipeReview) {
+            SwipeReviewView(viewModel: viewModel, items: swipeItems)
         }
     }
 }

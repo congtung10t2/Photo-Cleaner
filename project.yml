@@ -1,0 +1,70 @@
+name: PhotoCleaner
+options:
+  deploymentTarget:
+    iOS: 17.0
+  bundleIdPrefix: com.sideproject
+  createIntermediateGroups: true
+  groupSortPosition: top
+settingGroups:
+  app:
+    settings:
+      base:
+        SWIFT_VERSION: '5.10'
+        TARGETED_DEVICE_FAMILY: '1,2'
+        SWIFT_EMIT_LOC_STRINGS: 'YES'
+        CLANG_ENABLE_MODULES: 'YES'
+        ENABLE_PREVIEWS: 'YES'
+targets:
+  PhotoCleaner:
+    type: application
+    platform: iOS
+    settings:
+      group: app
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sideproject.PhotoCleaner
+        PRODUCT_NAME: PhotoCleaner
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: 'YES'
+        INFOPLIST_KEY_UILaunchScreen_Generation: 'YES'
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: 'YES'
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: 'UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight'
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: 'UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight'
+    sources:
+      - path: PhotoCleaner
+        excludes:
+          - Resources/Info.plist
+    resources:
+      - path: PhotoCleaner/Resources/Assets.xcassets
+    info:
+      path: PhotoCleaner/Resources/Info.plist
+      properties:
+        NSPhotoLibraryUsageDescription: 'PhotoCleaner needs access to your photo library to find duplicates, empty shots and very short videos.'
+        NSPhotoLibraryAddUsageDescription: 'PhotoCleaner needs permission to remove the items you select.'
+        CFBundleDisplayName: PhotoCleaner
+        CFBundleShortVersionString: '1.0'
+        CFBundleVersion: '1'
+        LSMinimumSystemVersion: '17.0'
+  PhotoCleanerTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      group: app
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sideproject.PhotoCleanerTests
+        PRODUCT_NAME: PhotoCleanerTests
+    sources:
+      - path: PhotoCleanerTests
+    dependencies:
+      - target: PhotoCleaner
+schemes:
+  PhotoCleaner:
+    build:
+      targets:
+        PhotoCleaner: all
+        PhotoCleanerTests: [test]
+    test:
+      targets:
+        - PhotoCleanerTests
+    run:
+      config: Debug
+    archive:
+      config: Release

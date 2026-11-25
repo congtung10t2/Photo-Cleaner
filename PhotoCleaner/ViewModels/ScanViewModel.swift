@@ -15,8 +15,39 @@ final class ScanViewModel: ObservableObject {
     @Published private(set) var selectedIDs: Set<String> = []
     @Published var alertMessage: String?
 
+    @Published var selectedScopeOption: ScanScopeOption = .hundred
+    @Published var customAmount = 100
+    @Published var reviewBeforeDeleting = false
+
     private let library = PhotoLibraryService.shared
     private let scanService = ScanService()
+    private let resultBuilder = ResultBuilder()
+
+    private var allAssets: [PHAsset] = []
+    private var scanOffset = 0
+    private var analyses: [AssetAnalysis] = []
+    private var scanStartedAt = Date()
+
+    var activeScope: ScanScope {
+        switch selectedScopeOption {
+        case .hundred: return .batch(100)
+        case .custom: return .batch(max(1, customAmount))
+        case .full: return .full
+        }
+    }
+
+    var hasMoreBatches: Bool {
+        scanOffset < allAssets.count
+    }
+
+    var nextBatchSize: Int {
+        guard let range = BatchPlanner.nextRange(
+            totalCount: allAssets.count,
+            offset: scanOffset,
+            scope: activeScope
+        ) else { return 0 }
+        return range.count
+    }
 
     var canAccessLibrary: Bool {
         authorization == .authorized || authorization == .limited
@@ -44,14 +75,54 @@ final class ScanViewModel: ObservableObject {
         guard canAccessLibrary else { return }
 
         selectedIDs.removeAll()
-        phase = .scanning(progress: 0, message: "Preparing your library…")
+        analyses.removeAll()
+        scanOffset = 0
+        scanStartedAt = Date()
+        allAssets = library.fetchAssets()
 
-        let result = await scanService.scan { [weak self] progress, message in
+        phase = .scanning(progress: 0, message: "Preparing your library…")
+        await scanNextRange(scope: activeScope)
+    }
+
+    func scanNextBatch() async {
+        await scanNextRange(scope: activeScope)
+    }
+
+    func scanFullLibrary() async {
+        selectedScopeOption = .full
+        await scanNextRange(scope: .full)
+    }
+
+    private func scanNextRange(scope: ScanScope) async {
+        guard let range = BatchPlanner.nextRange(
+            totalCount: allAssets.count,
+            offset: scanOffset,
+            scope: scope
+        ) else {
+            publishResult()
+            return
+        }
+
+        phase = .scanning(progress: 0, message: "Analyzing \(range.count) items…")
+
+        let batch = Array(allAssets[range])
+        let newAnalyses = await scanService.scan(assets: batch) { [weak self] progress, message in
             Task { @MainActor [weak self] in
                 self?.phase = .scanning(progress: progress, message: message)
             }
         }
 
+        analyses.append(contentsOf: newAnalyses)
+        scanOffset = range.upperBound
+        publishResult()
+    }
+
+    private func publishResult() {
+        let result = resultBuilder.build(
+            analyses: analyses,
+            scannedAssetCount: analyses.count,
+            startedAt: scanStartedAt
+        )
         phase = .done(result)
 
         if !result.groups.contains(where: { $0.category == selectedCategory }),
@@ -64,6 +135,10 @@ final class ScanViewModel: ObservableObject {
 
     func isSelected(_ id: String) -> Bool {
         selectedIDs.contains(id)
+    }
+
+    func clearSelection() {
+        selectedIDs.removeAll()
     }
 
     func toggle(_ id: String) {
@@ -84,34 +159,28 @@ final class ScanViewModel: ObservableObject {
     }
 
     func deleteSelected() async {
+        await delete(ids: selectedIDs)
+    }
+
+    func delete(ids: Set<String>) async {
         guard case .done(let result) = phase else { return }
 
-        let toDelete = currentGroups.flatMap(\.assets).filter { selectedIDs.contains($0.id) }
+        let toDelete = analyses.filter { ids.contains($0.descriptor.id) }.map(\.descriptor)
         guard !toDelete.isEmpty else { return }
 
         do {
             try await DeletionService.delete(toDelete)
 
             let deletedIDs = Set(toDelete.map(\.id))
-            let remainingGroups = result.groups.compactMap { group -> IssueGroup? in
-                var updated = group
-                updated.assets.removeAll { deletedIDs.contains($0.id) }
-                guard !updated.assets.isEmpty else { return nil }
-                if let keepID = group.keepID, deletedIDs.contains(keepID) {
-                    updated.keepID = updated.assets.first?.id
-                }
-                return updated
-            }
+            analyses.removeAll { deletedIDs.contains($0.descriptor.id) }
 
-            phase = .done(
-                ScanResult(
-                    groups: remainingGroups,
-                    scannedAssetCount: max(0, result.scannedAssetCount - deletedIDs.count),
-                    startedAt: result.startedAt,
-                    finishedAt: Date()
-                )
+            let updatedResult = resultBuilder.build(
+                analyses: analyses,
+                scannedAssetCount: max(0, result.scannedAssetCount - deletedIDs.count),
+                startedAt: result.startedAt
             )
-            selectedIDs.removeAll()
+            phase = .done(updatedResult)
+            selectedIDs.subtract(deletedIDs)
         } catch {
             alertMessage = error.localizedDescription
         }

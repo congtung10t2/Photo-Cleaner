@@ -16,7 +16,9 @@ An on-device iOS app that scans the photo library and groups:
 
 Open `PhotoCleaner.xcodeproj`, select the `PhotoCleaner` scheme, choose a device or simulator, and run. Grant photo library access on the first launch, then tap **Scan Photo Library**.
 
-After scanning, choose an issue type, tap thumbnails to select them, and use **Delete selected**. A "KEEP" badge marks the highest-resolution copy in each duplicate group. Deleted items go to **Recently Deleted**.
+Before scanning, choose the amount: **100 items**, a **custom amount**, or **Full library** (the final option). Each scan analyzes that slice of the library; **Next N** continues from where the previous batch stopped, and results accumulate across batches.
+
+After scanning, choose an issue type and tap thumbnails to select them. A "KEEP" badge marks the highest-resolution copy in each duplicate group. Enable **Review before deleting** to walk through each selected item full-screen and decide Keep or Delete individually; otherwise the standard confirmation dialog is used. Deleted items go to **Recently Deleted**.
 
 ## Regenerating the Xcode project
 
@@ -39,9 +41,9 @@ xcodebuild -project PhotoCleaner.xcodeproj -scheme PhotoCleaner \
 ## Structure
 
 - `PhotoCleaner/Services` — PhotoKit access, image hashing, Vision analysis, video analysis, scan orchestration, deletion
-- `PhotoCleaner/Utilities` — pure rules (hamming distance, clustering, junk score, video thresholds) that are unit-tested
-- `PhotoCleaner/Models` — asset descriptors, issue groups, scan results
-- `PhotoCleaner/Views` + `ViewModels` — SwiftUI UI
+- `PhotoCleaner/Utilities` — pure rules (hamming distance, clustering, batch slicing, junk score, video thresholds) that are unit-tested
+- `PhotoCleaner/Models` — asset descriptors, per-asset analysis, scan scope, issue groups, scan results
+- `PhotoCleaner/Views` + `ViewModels` — SwiftUI UI, including scope selector and full-screen review flow
 
 ## Notes
 

@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3D5E0A40BAB69A9900AEA3 /* BatchPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CD8E06950051F4ACCF233 /* BatchPlanner.swift */; };
 		11A298E7CC389000400F6C02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B1B1FF19377D127BA5C306 /* ContentView.swift */; };
 		192AA63B2B5BCCB1F4627CAF /* AssetDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9DED09D49FB918A7B4312C /* AssetDescriptor.swift */; };
 		1E4EC012829D4EF107871830 /* JunkRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2006C1C8CF554C36D60BAEC /* JunkRules.swift */; };
 		1E93C6C233BA6DEF6B05CAF9 /* ScanResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C939054FE99EE86EFED3C03 /* ScanResult.swift */; };
+		1F90FD1A572C7C5054502CEC /* AssetAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3464A2FEA75A59B0344E8 /* AssetAnalysis.swift */; };
+		2F836DDF45C91D1CF503D3EF /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61EB53F3DCEC9C40A9A7781 /* ReviewView.swift */; };
 		3526ED67D85664224D176737 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A11F0033B8AB4D2F3B6C0EA /* PhotoLibraryService.swift */; };
 		3C21E490AA6205400E80CE50 /* AssetThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E3714ABB842B86ECCAACC /* AssetThumbnailView.swift */; };
 		3FE860580376CC1439FF7E4B /* Fingerprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865632A77AF971D9423EABF3 /* Fingerprint.swift */; };
@@ -18,17 +21,22 @@
 		4E1AC04FEEC248BD2242F2C8 /* FingerprintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE06BC13753ECF9B9A83D9B /* FingerprintTests.swift */; };
 		5E2D6DD670541FEA80349D49 /* PhotoCleanerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E26A0BFAD658E0CCA90EA95 /* PhotoCleanerApp.swift */; };
 		8A9553E4DE5B8370E645DE0F /* ImageAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C9828C3B8613F96FF33D71 /* ImageAnalysisService.swift */; };
+		993D19390090FAB2A6644DF9 /* ResultBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787D2661C1077690E015E005 /* ResultBuilder.swift */; };
 		9C5B0FA4F3D3E30C5A9D8442 /* VideoRulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71D43B602CEB3024011E4F8 /* VideoRulesTests.swift */; };
 		9E4D564252F9348C9E256A87 /* ScanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C95E0C1885356AD5170119 /* ScanProgressView.swift */; };
 		A2088C8C3F40503CBCC2B738 /* VideoAnalysisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35FF362B888AB36C391A6A0 /* VideoAnalysisService.swift */; };
 		A26B85551F37FFF6FC45C3F7 /* LibraryScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE957C6BDACFF1629D74E21 /* LibraryScannerView.swift */; };
 		A66E503904CD5C3F2A93B816 /* JunkRulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7B1721798013B94471EBB /* JunkRulesTests.swift */; };
+		A73DD2280C5CB5554F886E48 /* ScanScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA6CA7D90A5F0B145E3908 /* ScanScope.swift */; };
 		AAA84C6CBEF63BC9936F7620 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083ECB0F051BA4A6602E5D /* ResultsView.swift */; };
 		AAB3E705621AF66F167E11F8 /* ScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5046590140E59501837AA17B /* ScanViewModel.swift */; };
 		AF79A9D5233DF1F63DBB2EA5 /* IssueGroupCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26E16CF9E53735CB6A107AF /* IssueGroupCard.swift */; };
+		B50F62176D85080E00A38A23 /* FullScreenAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D37663906E1EA4C6890D0E /* FullScreenAssetView.swift */; };
 		CC62B1AA03304B4B16146164 /* PermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BBAB2B78B7179E9B92CEAF /* PermissionView.swift */; };
 		CCCE06529257C362B8054C51 /* JunkDetectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4098B16CC3B8599D1BFCC949 /* JunkDetectionService.swift */; };
+		CF94B968B6DD74B4EAC5B562 /* BatchPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDBF3C879D2C5F05C35AA79 /* BatchPlannerTests.swift */; };
 		D7662FFAA731663438494A71 /* DeletionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF5B8C495C6FDC2E6FDC5DE /* DeletionService.swift */; };
+		E97A8419C59D3CCB51A2E958 /* ScanScopeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2A5D40EECF4DA5203C588 /* ScanScopeSelector.swift */; };
 		F11E7825386CE2CB6594BA19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C63D9084D2A4F72D041E61D3 /* Assets.xcassets */; };
 		FC727638DF16F522B5770369 /* ScanService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C327583E3697362C0D1A5CFC /* ScanService.swift */; };
 		FC78CCBE6A302080E36890F1 /* VideoRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1119E307E7B648C73A14EB /* VideoRules.swift */; };
@@ -49,18 +57,22 @@
 		05083ECB0F051BA4A6602E5D /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		1A11F0033B8AB4D2F3B6C0EA /* PhotoLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryService.swift; sourceTree = "<group>"; };
 		26C9828C3B8613F96FF33D71 /* ImageAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAnalysisService.swift; sourceTree = "<group>"; };
+		2CDBF3C879D2C5F05C35AA79 /* BatchPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchPlannerTests.swift; sourceTree = "<group>"; };
 		3C939054FE99EE86EFED3C03 /* ScanResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResult.swift; sourceTree = "<group>"; };
 		3DE957C6BDACFF1629D74E21 /* LibraryScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryScannerView.swift; sourceTree = "<group>"; };
 		4098B16CC3B8599D1BFCC949 /* JunkDetectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JunkDetectionService.swift; sourceTree = "<group>"; };
-		492F1B172D6392170B3BD6FF /* PhotoCleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoCleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		492F1B172D6392170B3BD6FF /* PhotoCleaner.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PhotoCleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5046590140E59501837AA17B /* ScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewModel.swift; sourceTree = "<group>"; };
 		5BE06BC13753ECF9B9A83D9B /* FingerprintTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerprintTests.swift; sourceTree = "<group>"; };
 		67C95E0C1885356AD5170119 /* ScanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanProgressView.swift; sourceTree = "<group>"; };
 		6E26A0BFAD658E0CCA90EA95 /* PhotoCleanerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCleanerApp.swift; sourceTree = "<group>"; };
 		72DBBB4A3DBAD5139A4D55C2 /* PhotoCleanerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PhotoCleanerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		787D2661C1077690E015E005 /* ResultBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBuilder.swift; sourceTree = "<group>"; };
 		865632A77AF971D9423EABF3 /* Fingerprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fingerprint.swift; sourceTree = "<group>"; };
 		8899F6F571D4CC26B9E78237 /* StartScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScanView.swift; sourceTree = "<group>"; };
 		8A1119E307E7B648C73A14EB /* VideoRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRules.swift; sourceTree = "<group>"; };
+		8CC3464A2FEA75A59B0344E8 /* AssetAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetAnalysis.swift; sourceTree = "<group>"; };
+		99D37663906E1EA4C6890D0E /* FullScreenAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenAssetView.swift; sourceTree = "<group>"; };
 		ACF5B8C495C6FDC2E6FDC5DE /* DeletionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionService.swift; sourceTree = "<group>"; };
 		AE1E3714ABB842B86ECCAACC /* AssetThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetThumbnailView.swift; sourceTree = "<group>"; };
 		B1B1B1FF19377D127BA5C306 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,11 +81,15 @@
 		C327583E3697362C0D1A5CFC /* ScanService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanService.swift; sourceTree = "<group>"; };
 		C63D9084D2A4F72D041E61D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C71D43B602CEB3024011E4F8 /* VideoRulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRulesTests.swift; sourceTree = "<group>"; };
+		CCA2A5D40EECF4DA5203C588 /* ScanScopeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanScopeSelector.swift; sourceTree = "<group>"; };
 		CD45B1B0D25C4EE66B48F14F /* ScanCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCategory.swift; sourceTree = "<group>"; };
 		D2006C1C8CF554C36D60BAEC /* JunkRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JunkRules.swift; sourceTree = "<group>"; };
 		D3BBAB2B78B7179E9B92CEAF /* PermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionView.swift; sourceTree = "<group>"; };
+		D4EA6CA7D90A5F0B145E3908 /* ScanScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanScope.swift; sourceTree = "<group>"; };
 		EC9DED09D49FB918A7B4312C /* AssetDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDescriptor.swift; sourceTree = "<group>"; };
 		F35FF362B888AB36C391A6A0 /* VideoAnalysisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAnalysisService.swift; sourceTree = "<group>"; };
+		F47CD8E06950051F4ACCF233 /* BatchPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchPlanner.swift; sourceTree = "<group>"; };
+		F61EB53F3DCEC9C40A9A7781 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -97,6 +113,7 @@
 		4E7E563B5833D4B9DE888B2F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F47CD8E06950051F4ACCF233 /* BatchPlanner.swift */,
 				865632A77AF971D9423EABF3 /* Fingerprint.swift */,
 				D2006C1C8CF554C36D60BAEC /* JunkRules.swift */,
 				8A1119E307E7B648C73A14EB /* VideoRules.swift */,
@@ -107,6 +124,7 @@
 		6CF834C5F131C781ED14A8F1 /* PhotoCleanerTests */ = {
 			isa = PBXGroup;
 			children = (
+				2CDBF3C879D2C5F05C35AA79 /* BatchPlannerTests.swift */,
 				5BE06BC13753ECF9B9A83D9B /* FingerprintTests.swift */,
 				BFB7B1721798013B94471EBB /* JunkRulesTests.swift */,
 				C71D43B602CEB3024011E4F8 /* VideoRulesTests.swift */,
@@ -134,9 +152,11 @@
 		72EB145EF64EE92F997B09F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8CC3464A2FEA75A59B0344E8 /* AssetAnalysis.swift */,
 				EC9DED09D49FB918A7B4312C /* AssetDescriptor.swift */,
 				CD45B1B0D25C4EE66B48F14F /* ScanCategory.swift */,
 				3C939054FE99EE86EFED3C03 /* ScanResult.swift */,
+				D4EA6CA7D90A5F0B145E3908 /* ScanScope.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +182,7 @@
 				26C9828C3B8613F96FF33D71 /* ImageAnalysisService.swift */,
 				4098B16CC3B8599D1BFCC949 /* JunkDetectionService.swift */,
 				1A11F0033B8AB4D2F3B6C0EA /* PhotoLibraryService.swift */,
+				787D2661C1077690E015E005 /* ResultBuilder.swift */,
 				C327583E3697362C0D1A5CFC /* ScanService.swift */,
 				F35FF362B888AB36C391A6A0 /* VideoAnalysisService.swift */,
 			);
@@ -173,11 +194,14 @@
 			children = (
 				AE1E3714ABB842B86ECCAACC /* AssetThumbnailView.swift */,
 				B1B1B1FF19377D127BA5C306 /* ContentView.swift */,
+				99D37663906E1EA4C6890D0E /* FullScreenAssetView.swift */,
 				B26E16CF9E53735CB6A107AF /* IssueGroupCard.swift */,
 				3DE957C6BDACFF1629D74E21 /* LibraryScannerView.swift */,
 				D3BBAB2B78B7179E9B92CEAF /* PermissionView.swift */,
 				05083ECB0F051BA4A6602E5D /* ResultsView.swift */,
+				F61EB53F3DCEC9C40A9A7781 /* ReviewView.swift */,
 				67C95E0C1885356AD5170119 /* ScanProgressView.swift */,
+				CCA2A5D40EECF4DA5203C588 /* ScanScopeSelector.swift */,
 				8899F6F571D4CC26B9E78237 /* StartScanView.swift */,
 			);
 			path = Views;
@@ -230,6 +254,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 34A43265EEDF1282B8A97AA0 /* Build configuration list for PBXProject "PhotoCleaner" */;
 			developmentRegion = en;
@@ -267,11 +293,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F90FD1A572C7C5054502CEC /* AssetAnalysis.swift in Sources */,
 				192AA63B2B5BCCB1F4627CAF /* AssetDescriptor.swift in Sources */,
 				3C21E490AA6205400E80CE50 /* AssetThumbnailView.swift in Sources */,
+				0B3D5E0A40BAB69A9900AEA3 /* BatchPlanner.swift in Sources */,
 				11A298E7CC389000400F6C02 /* ContentView.swift in Sources */,
 				D7662FFAA731663438494A71 /* DeletionService.swift in Sources */,
 				3FE860580376CC1439FF7E4B /* Fingerprint.swift in Sources */,
+				B50F62176D85080E00A38A23 /* FullScreenAssetView.swift in Sources */,
 				8A9553E4DE5B8370E645DE0F /* ImageAnalysisService.swift in Sources */,
 				AF79A9D5233DF1F63DBB2EA5 /* IssueGroupCard.swift in Sources */,
 				CCCE06529257C362B8054C51 /* JunkDetectionService.swift in Sources */,
@@ -280,10 +309,14 @@
 				CC62B1AA03304B4B16146164 /* PermissionView.swift in Sources */,
 				5E2D6DD670541FEA80349D49 /* PhotoCleanerApp.swift in Sources */,
 				3526ED67D85664224D176737 /* PhotoLibraryService.swift in Sources */,
+				993D19390090FAB2A6644DF9 /* ResultBuilder.swift in Sources */,
 				AAA84C6CBEF63BC9936F7620 /* ResultsView.swift in Sources */,
+				2F836DDF45C91D1CF503D3EF /* ReviewView.swift in Sources */,
 				FF599C24F405EC4F9286AA46 /* ScanCategory.swift in Sources */,
 				9E4D564252F9348C9E256A87 /* ScanProgressView.swift in Sources */,
 				1E93C6C233BA6DEF6B05CAF9 /* ScanResult.swift in Sources */,
+				A73DD2280C5CB5554F886E48 /* ScanScope.swift in Sources */,
+				E97A8419C59D3CCB51A2E958 /* ScanScopeSelector.swift in Sources */,
 				FC727638DF16F522B5770369 /* ScanService.swift in Sources */,
 				AAB3E705621AF66F167E11F8 /* ScanViewModel.swift in Sources */,
 				4B44BFF751FA1249513D0B88 /* StartScanView.swift in Sources */,
@@ -296,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF94B968B6DD74B4EAC5B562 /* BatchPlannerTests.swift in Sources */,
 				4E1AC04FEEC248BD2242F2C8 /* FingerprintTests.swift in Sources */,
 				A66E503904CD5C3F2A93B816 /* JunkRulesTests.swift in Sources */,
 				9C5B0FA4F3D3E30C5A9D8442 /* VideoRulesTests.swift in Sources */,
@@ -318,7 +352,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y3L2N4KDC2;
 				INFOPLIST_FILE = PhotoCleaner/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -329,7 +362,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thaole.clonetetris;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sideproject.PhotoCleaner;
 				PRODUCT_NAME = PhotoCleaner;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -341,7 +374,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y3L2N4KDC2;
 				INFOPLIST_FILE = PhotoCleaner/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -352,7 +384,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thaole.clonetetris;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sideproject.PhotoCleaner;
 				PRODUCT_NAME = PhotoCleaner;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

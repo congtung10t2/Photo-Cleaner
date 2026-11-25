@@ -4,7 +4,7 @@ struct StartScanView: View {
     @ObservedObject var viewModel: ScanViewModel
 
     var body: some View {
-        VStack(spacing: 28) {
+        VStack(spacing: 18) {
             Spacer()
 
             Image(systemName: "photo.stack")
@@ -33,10 +33,12 @@ struct StartScanView: View {
             }
             .frame(maxWidth: 420, alignment: .leading)
 
+            ScanScopeSelector(viewModel: viewModel)
+
             Button {
                 Task { await viewModel.startScan() }
             } label: {
-                Label("Scan Photo Library", systemImage: "magnifyingglass")
+                Label("Scan \(viewModel.activeScope.label)", systemImage: "magnifyingglass")
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)

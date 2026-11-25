@@ -3,6 +3,11 @@ import SwiftUI
 struct ResultsView: View {
     @ObservedObject var viewModel: ScanViewModel
     @State private var showingDeleteConfirmation = false
+    @State private var showingReview = false
+
+    private var selectedAssets: [AssetDescriptor] {
+        viewModel.currentGroups.flatMap(\.assets).filter { viewModel.isSelected($0.id) }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -13,11 +18,46 @@ struct ResultsView: View {
             }
             .pickerStyle(.menu)
             .padding(.horizontal)
+            .onChange(of: viewModel.selectedCategory) { _, _ in
+                viewModel.clearSelection()
+            }
 
-            Text("Scanned \(viewModel.scannedCount) items")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            HStack {
+                Text("Scanned \(viewModel.scannedCount) items")
+                Spacer()
+                Text(viewModel.activeScope.label)
+            }
+            .font(.caption)
+            .foregroundStyle(.secondary)
+            .padding(.horizontal)
+            .padding(.bottom, 6)
+
+            if viewModel.hasMoreBatches {
+                HStack(spacing: 10) {
+                    Button {
+                        Task { await viewModel.scanNextBatch() }
+                    } label: {
+                        Label("Next \(viewModel.nextBatchSize)", systemImage: "arrow.right")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+
+                    Button {
+                        Task { await viewModel.scanFullLibrary() }
+                    } label: {
+                        Label("Full library", systemImage: "rectangle.stack")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .padding(.horizontal)
                 .padding(.bottom, 6)
+            }
+
+            Toggle("Review before deleting", isOn: $viewModel.reviewBeforeDeleting)
+                .font(.subheadline)
+                .padding(.horizontal)
+                .padding(.bottom, 4)
 
             if viewModel.currentGroups.isEmpty {
                 ContentUnavailableView(
@@ -34,7 +74,11 @@ struct ResultsView: View {
 
             if viewModel.selectedIDs.count > 0 {
                 Button(role: .destructive) {
-                    showingDeleteConfirmation = true
+                    if viewModel.reviewBeforeDeleting {
+                        showingReview = true
+                    } else {
+                        showingDeleteConfirmation = true
+                    }
                 } label: {
                     Label("Delete \(viewModel.selectedIDs.count) selected", systemImage: "trash")
                         .frame(maxWidth: .infinity)
@@ -50,6 +94,9 @@ struct ResultsView: View {
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("They move to Recently Deleted and can be recovered for 30 days.")
+        }
+        .sheet(isPresented: $showingReview) {
+            ReviewView(viewModel: viewModel, items: selectedAssets)
         }
     }
 }

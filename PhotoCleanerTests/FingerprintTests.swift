@@ -23,6 +23,20 @@ final class FingerprintTests: XCTestCase {
         XCTAssertTrue(groups.contains { Set($0) == Set(["c", "d"]) })
     }
 
+    func testGroupsHashesWithFourDifferencesAcrossBlocks() {
+        let fourDifferences: UInt64 = (1 << 0) | (1 << 13) | (1 << 26) | (1 << 39)
+        let entries = [
+            HashEntry(id: "a", hash: 0),
+            HashEntry(id: "b", hash: fourDifferences),
+            HashEntry(id: "c", hash: UInt64.max)
+        ]
+
+        let groups = SimilarityGrouping.groups(entries: entries, maxDistance: 4)
+
+        XCTAssertEqual(groups.count, 1)
+        XCTAssertEqual(Set(groups[0]), Set(["a", "b"]))
+    }
+
     func testGroupsLargestSetFirst() {
         let entries = [
             HashEntry(id: "a", hash: 0),

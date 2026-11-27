@@ -53,6 +53,31 @@ struct StartScanView: View {
             .controlSize(.large)
             .padding(.horizontal, 40)
 
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Scan & Browse")
+                    .font(.headline)
+
+                Picker("Batch size", selection: $viewModel.browseBatchSize) {
+                    Text("10").tag(10)
+                    Text("20").tag(20)
+                }
+                .pickerStyle(.segmented)
+
+                Button {
+                    Task { await viewModel.startScanAndBrowse(batchSize: viewModel.browseBatchSize) }
+                } label: {
+                    Label("Scan & Browse \(viewModel.browseBatchSize)", systemImage: "photo.stack")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.large)
+
+                Text("Scans a small batch and opens every picture so you can remove anything while reviewing, then scan the next batch.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal, 40)
+
             Button {
                 showingRestartConfirmation = true
             } label: {

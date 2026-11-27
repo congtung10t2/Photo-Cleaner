@@ -19,6 +19,9 @@ final class ScanViewModel: ObservableObject {
     @Published var selectedScopeOption: ScanScopeOption = .hundred
     @Published var customAmount = 100
     @Published var reviewBeforeDeleting = false
+    @Published var browseBatchSize = 10
+    @Published var isBrowsingScannedBatch = false
+    @Published private(set) var lastBatchAssets: [AssetDescriptor] = []
 
     private let library = PhotoLibraryService.shared
     private let scanService = ScanService()
@@ -32,6 +35,8 @@ final class ScanViewModel: ObservableObject {
 
     var activeScope: ScanScope {
         switch selectedScopeOption {
+        case .ten: return .batch(10)
+        case .twenty: return .batch(20)
         case .hundred: return .batch(100)
         case .custom: return .batch(max(1, customAmount))
         case .full: return .full
@@ -64,6 +69,11 @@ final class ScanViewModel: ObservableObject {
         guard case .done(let result) = phase else { return [] }
         var seen = Set<String>()
         return result.groups.flatMap(\.assets).filter { seen.insert($0.id).inserted }
+    }
+
+    var flaggedIDs: Set<String> {
+        guard case .done(let result) = phase else { return [] }
+        return Set(result.groups.flatMap(\.assets).map(\.id))
     }
 
     var scannedCount: Int {
@@ -105,12 +115,32 @@ final class ScanViewModel: ObservableObject {
         await scanNextRange(scope: activeScope)
     }
 
+    func startScanAndBrowse(batchSize: Int) async {
+        guard canAccessLibrary else { return }
+
+        let size = max(1, batchSize)
+        browseBatchSize = size
+        selectedIDs.removeAll()
+        analyses.removeAll()
+        scanOffset = 0
+        scanStartedAt = Date()
+        let scannedIDs = loadScannedIDs()
+        allAssets = library.fetchAssets().filter { !scannedIDs.contains($0.localIdentifier) }
+
+        phase = .scanning(progress: 0, message: "Preparing your library…")
+        await scanNextRange(scope: .batch(size), thenBrowse: true)
+    }
+
+    func scanNextBatchAndBrowse() async {
+        await scanNextRange(scope: .batch(browseBatchSize), thenBrowse: true)
+    }
+
     func scanFullLibrary() async {
         selectedScopeOption = .full
         await scanNextRange(scope: .full)
     }
 
-    private func scanNextRange(scope: ScanScope) async {
+    private func scanNextRange(scope: ScanScope, thenBrowse: Bool = false) async {
         guard let range = BatchPlanner.nextRange(
             totalCount: allAssets.count,
             offset: scanOffset,
@@ -133,6 +163,11 @@ final class ScanViewModel: ObservableObject {
         markScanned(newAnalyses.map { $0.descriptor.id })
         scanOffset = range.upperBound
         publishResult()
+        lastBatchAssets = newAnalyses.map(\.descriptor)
+
+        if thenBrowse {
+            isBrowsingScannedBatch = true
+        }
     }
 
     func restartScanning() async {
@@ -235,6 +270,7 @@ final class ScanViewModel: ObservableObject {
 
             let deletedIDs = Set(toDelete.map(\.id))
             analyses.removeAll { deletedIDs.contains($0.descriptor.id) }
+            lastBatchAssets.removeAll { deletedIDs.contains($0.id) }
 
             let updatedResult = resultBuilder.build(
                 analyses: analyses,

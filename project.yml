@@ -51,6 +51,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.sideproject.PhotoCleanerTests
         PRODUCT_NAME: PhotoCleanerTests
+        GENERATE_INFOPLIST_FILE: 'YES'
     sources:
       - path: PhotoCleanerTests
     dependencies:

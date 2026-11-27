@@ -29,6 +29,9 @@ struct LibraryScannerView: View {
                     }
                 }
             }
+            .sheet(isPresented: $viewModel.isBrowsingScannedBatch) {
+                BrowseScannedView(viewModel: viewModel)
+            }
             .confirmationDialog("Restart scanning?", isPresented: $showingRestartConfirmation, titleVisibility: .visible) {
                 Button("Restart", role: .destructive) {
                     Task { await viewModel.restartScanning() }

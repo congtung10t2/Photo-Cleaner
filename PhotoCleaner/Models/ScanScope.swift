@@ -13,6 +13,8 @@ enum ScanScope: Equatable {
 }
 
 enum ScanScopeOption: String, CaseIterable, Identifiable {
+    case ten
+    case twenty
     case hundred
     case custom
     case full
@@ -21,6 +23,8 @@ enum ScanScopeOption: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
+        case .ten: "10 items"
+        case .twenty: "20 items"
         case .hundred: "100 items"
         case .custom: "Custom amount"
         case .full: "Full library"
